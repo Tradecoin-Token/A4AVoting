@@ -116,7 +116,7 @@
             var eachhour = 3600000
             var pausetime = 14400000
             var PendingTime = unix_timestamp;
-            var currentrunningweek = Math.round(((new Date().getTime()-unix_timestamp)/eachweek)+1,0)
+            var currentrunningweek = Math.floor(((new Date().getTime()-unix_timestamp)/eachweek)+1,0)
 
         
             window.onload = async function(){
