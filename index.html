@@ -111,6 +111,13 @@
         var sortRule = 0;
         var blockHeight;
         
+            var unix_timestamp = 1628368200000
+            var eachweek = 604800000
+            var eachhour = 3600000
+            var pausetime = 14400000
+            var PendingTime = unix_timestamp;
+            var currentrunningweek = Math.round(((new Date().getTime()-unix_timestamp)/eachweek)+1,0)
+
         
             window.onload = async function(){
             var responseObject = await fetch(APIURL);
@@ -165,12 +172,6 @@
             panel6Data = await panel6ResponseObject.json();
             document.getElementById("panel6").innerHTML = 'Total Votes Sushi<br>'+panel6Data.value;
             
-            var unix_timestamp = 1628371800000
-            var eachweek = 604800000
-            var eachhour = 3600000
-            var pausetime = 14400000
-            var PendingTime = unix_timestamp;
-            var currentrunningweek = Math.round(((new Date().getTime()-unix_timestamp)/eachweek)+1,0)
             var TSUptoPastWeek = unix_timestamp+(currentrunningweek)*eachweek
             var votingpausetime = TSUptoPastWeek+pausetime
             var converteddate = new Date(TSUptoPastWeek).toLocaleDateString("en-US",{ year: 'numeric', month: 'long', day: 'numeric' })
@@ -245,7 +246,7 @@
                 output += '<thead class="text-white" style="background-color: #ff007f">';
                 output += '<tr>';
                 output += '<th>Voter Address</th>';
-                output += '<th>No. of Votes</th>';
+                output += '<th>User Sumup of Votes</th>';
                 output += '</tr>';
                 output += '</thead>';
                 output += '<tbody>';
