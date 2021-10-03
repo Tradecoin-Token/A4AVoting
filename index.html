@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/plain; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A4A Voting DApp Statistics</title>
+    <title>A4A Main Voting DApp Statistics</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -31,7 +31,7 @@
     <div id="mainArea" class="d-none">
         <div class="shadow-sm py-3 text-center">
             <img src="logo.jpg" height="40px;">
-            <h4 class="d-inline" style="vertical-align:middle;">A4A Voting DApp Statistics</h4>
+            <h4 class="d-inline" style="vertical-align:middle;">A4A Main Voting DApp Statistics</h4>
         </div>
                     
         <div class="container-fluid mx-auto py-5 px-lg-5">
@@ -66,11 +66,36 @@
                         <div class="card-body text-center h4 text-white" id="panel6"></div>
                     </div>
                 </div>
+                
+                <div class="col-md-3 col-12 mb-3">
+                    <div class="card py-3" style="background: #0dbaae;">
+                        <div class="card-body text-center h4 text-white" id="panel8"></div>
+                    </div>
+                </div>                                
+
+                <div class="col-md-3 col-12 mb-3">
+                    <div class="card py-3" style="background: #0dbaae;">
+                        <div class="card-body text-center h4 text-white" id="panel9"></div>
+                    </div>
+                </div>                                
+                                
+                <div class="col-md-3 col-12 mb-3">
+                    <div class="card py-3" style="background: #0dbaae;">
+                        <div class="card-body text-center h4 text-white" id="panel10"></div>
+                    </div>
+                </div>                                                
+
+                <div class="col-md-3 col-12 mb-3">
+                    <div class="card py-3" style="background: #0dbaae;">
+                        <div class="card-body text-center h4 text-white" id="panel11"></div>
+                    </div>
+                </div>                                
+
                 <div class="col-md-3 col-12 mb-3">
                     <div class="card py-3" style="background: #0dbaae;">
                         <div class="card-body text-center h4 text-white" id="panel7"></div>
                     </div>
-                </div>                
+                </div>                                
                                 
             </div>
         </div>
@@ -134,10 +159,10 @@
             var panel2ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Txns");
             if(panel2ResponseObject.status ==404)
             {
-            document.getElementById("panel2").innerHTML = 'Total Transactions<br>'+"-";
+            document.getElementById("panel2").innerHTML = 'Total Txns<br>'+"-";
             }
             panel2Data = await panel2ResponseObject.json();
-            document.getElementById("panel2").innerHTML = 'Total Transactions<br>'+panel2Data.value;
+            document.getElementById("panel2").innerHTML = 'Total Txns<br>'+panel2Data.value;
 
             var panel3ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Chainlink");
             if(panel3ResponseObject.status ==404)
@@ -150,10 +175,10 @@
             var panel4ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Dent");
             if(panel4ResponseObject.status ==404)
             {
-            document.getElementById("panel4").innerHTML = 'Total Votes DENT<br>'+"-";
+            document.getElementById("panel4").innerHTML = 'Total Votes Dent<br>'+"-";
             }
             panel4Data = await panel4ResponseObject.json();
-            document.getElementById("panel4").innerHTML = 'Total Votes DENT<br>'+panel4Data.value;
+            document.getElementById("panel4").innerHTML = 'Total Votes Dent<br>'+panel4Data.value;
             
             
             var panel5ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Compound");
@@ -167,16 +192,48 @@
             var panel6ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Sushi");
             if(panel6ResponseObject.status ==404)
             {
-            document.getElementById("panel6").innerHTML = 'Total Votes Compound<br>'+"-";
+            document.getElementById("panel6").innerHTML = 'Total Votes Sushi<br>'+"-";
             }
             panel6Data = await panel6ResponseObject.json();
-            document.getElementById("panel6").innerHTML = 'Total Votes Sushi<br>'+panel6Data.value;
+            document.getElementById("panel6").innerHTML = 'Total Votes Sushi <br>'+panel6Data.value;
             
             var TSUptoPastWeek = unix_timestamp+(currentrunningweek)*eachweek
             var votingpausetime = TSUptoPastWeek+pausetime
             var converteddate = new Date(TSUptoPastWeek).toLocaleDateString("en-US",{ year: 'numeric', month: 'long', day: 'numeric' })
             var convertedtime = new Date(TSUptoPastWeek).toLocaleTimeString("en-US")
             document.getElementById("panel7").innerHTML = 'Next Voting: <br>'+converteddate+"<br>"+convertedtime;
+           
+            var panel8ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Haven");
+            if(panel8ResponseObject.status ==404)
+            {
+            document.getElementById("panel8").innerHTML = 'Total Votes Haven<br>'+"-";
+            }
+            panel8Data = await panel8ResponseObject.json();
+            document.getElementById("panel8").innerHTML = 'Total Votes Haven <br>'+panel8Data.value;
+            
+            var panel9ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_PirateChain");
+            if(panel9ResponseObject.status ==404)
+            {
+            document.getElementById("panel9").innerHTML = 'Total Votes Pirate Chain<br>'+"-";
+            }
+            panel9Data = await panel9ResponseObject.json();
+            document.getElementById("panel9").innerHTML = 'Total Votes Pirate Chain<br>'+panel9Data.value;            
+           
+            var panel10ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Monero");
+            if(panel10ResponseObject.status ==404)
+            {
+            document.getElementById("panel10").innerHTML = 'Total Votes Monero<br>'+"-";
+            }
+            panel10Data = await panel10ResponseObject.json();
+            document.getElementById("panel10").innerHTML = 'Total Votes Monero <br>'+panel10Data.value;           
+           
+            var panel11ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Privacy");
+            if(panel11ResponseObject.status ==404)
+            {
+            document.getElementById("panel11").innerHTML = 'Total Votes Privacy<br>'+"-";
+            }
+            panel11Data = await panel11ResponseObject.json();
+            document.getElementById("panel11").innerHTML = 'Total Votes Privacy <br>'+panel11Data.value;           
            
             loading.remove();
             mainArea.classList.remove('d-none');
@@ -208,7 +265,7 @@
                     }
                     var thisIndex = allIndex.indexOf(thisKey);
  
-                    if(item.key.includes('User_Total_Votes')){
+                    if(item.key.includes(currentrunningweek+'_User_Total_Votes')){
                         searchResult[thisIndex].DepositAmount = item.value;
                     }
                 }
