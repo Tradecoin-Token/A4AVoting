@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/plain; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>A4A Main Voting DApp Statistics</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,6 +23,13 @@
   text-decoration: none;
   display: inline-block;
 }        
+
+.chart_hum {
+    margin: 0 auto;
+    display: inline-block;
+}
+
+
     </style>
 </head>
 <body>
@@ -96,7 +104,14 @@
                         <div class="card-body text-center h4 text-white" id="panel7"></div>
                     </div>
                 </div>                                
-                                
+
+<div id="piechart" class="chart_hum"></div>
+
+
+
+
+
+                    
             </div>
         </div>
 
@@ -126,6 +141,7 @@
         </div>
     </div>
     <script>
+        
         const APIURL = "https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA";
 
         var loanData = '';
@@ -202,7 +218,7 @@
             var converteddate = new Date(TSUptoPastWeek).toLocaleDateString("en-US",{ year: 'numeric', month: 'long', day: 'numeric' })
             var convertedtime = new Date(TSUptoPastWeek).toLocaleTimeString("en-US")
             document.getElementById("panel7").innerHTML = 'Next Voting: <br>'+converteddate+"<br>"+convertedtime;
-           
+        
             var panel8ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Haven");
             if(panel8ResponseObject.status ==404)
             {
@@ -234,7 +250,34 @@
             }
             panel11Data = await panel11ResponseObject.json();
             document.getElementById("panel11").innerHTML = 'Total Votes Privacy <br>'+panel11Data.value;           
-           
+
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Token', 'No. of Votes'],
+  ['LINK', panel3Data.value],
+  ['DENT', panel4Data.value],
+  ['COMP',panel5Data.value],
+  ['SUSHI', panel6Data.value],
+  ['XHV', panel8Data.value],
+  ['ARRR', panel9Data.value],
+  ['XMR', panel10Data.value],
+  ['PRCY', panel11Data.value]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'A4A Blockchain Voting Results', 'width':800, 'height':400, fontSize: 12};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+
+            
             loading.remove();
             mainArea.classList.remove('d-none');
             showData(loanData, sortRule);
