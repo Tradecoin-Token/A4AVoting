@@ -97,7 +97,31 @@
                     <div class="card py-3" style="background: #0dbaae;">
                         <div class="card-body text-center h4 text-white" id="panel11"></div>
                     </div>
-                </div>                                
+                </div>
+
+                <div class="col-md-3 col-12 mb-3">
+                    <div class="card py-3" style="background: #0dbaae;">
+                        <div class="card-body text-center h4 text-white" id="panel12"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-12 mb-3">
+                    <div class="card py-3" style="background: #0dbaae;">
+                        <div class="card-body text-center h4 text-white" id="panel13"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-12 mb-3">
+                    <div class="card py-3" style="background: #0dbaae;">
+                        <div class="card-body text-center h4 text-white" id="panel14"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-12 mb-3">
+                    <div class="card py-3" style="background: #0dbaae;">
+                        <div class="card-body text-center h4 text-white" id="panel15"></div>
+                    </div>
+                </div>                
 
                 <div class="col-md-3 col-12 mb-3">
                     <div class="card py-3" style="background: #0dbaae;">
@@ -244,7 +268,39 @@
             }
             panel11Data = await panel11ResponseObject.json();
             document.getElementById("panel11").innerHTML = 'Total Votes Privacy <br>'+panel11Data.value;           
+            
+            var panel12ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Bitcoin");
+            if(panel12ResponseObject.status ==404)
+            {
+            document.getElementById("panel12").innerHTML = 'Total Votes Bitcoin<br>'+"-";
+            }
+            panel12Data = await panel12ResponseObject.json();
+            document.getElementById("panel12").innerHTML = 'Total Votes Bitcoin <br>'+panel12Data.value;
 
+            var panel13ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Litecoin");
+            if(panel13ResponseObject.status ==404)
+            {
+            document.getElementById("panel13").innerHTML = 'Total Votes Litecoin<br>'+"-";
+            }
+            panel13Data = await panel13ResponseObject.json();
+            document.getElementById("panel13").innerHTML = 'Total Votes Litecoin <br>'+panel13Data.value;
+
+            var panel14ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_Dash");
+            if(panel14ResponseObject.status ==404)
+            {
+            document.getElementById("panel14").innerHTML = 'Total Votes Dash<br>'+"-";
+            }
+            panel14Data = await panel14ResponseObject.json();
+            document.getElementById("panel14").innerHTML = 'Total Votes Dash <br>'+panel14Data.value;            
+
+            var panel15ResponseObject = await fetch("https://tnnode.turtlenetwork.eu/addresses/data/3JhE2u6TTeZ9uim3799JxnZ9e9tMUfiCMCA/Total_Votes_BitcoinCash");
+            if(panel15ResponseObject.status ==404)
+            {
+            document.getElementById("panel15").innerHTML = 'Total Votes Bitcoin Cash<br>'+"-";
+            }
+            panel15Data = await panel15ResponseObject.json();
+            document.getElementById("panel15").innerHTML = 'Total Votes Bitcoin Cash <br>'+panel15Data.value;            
+            
 // Load google charts
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
@@ -253,14 +309,18 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
   ['Token', 'No. of Votes'],
-  ['LINK', panel3Data.value],
-  ['DENT', panel4Data.value],
-  ['COMP',panel5Data.value],
+  ['LINK',  panel3Data.value],
+  ['DENT',  panel4Data.value],
+  ['COMP',  panel5Data.value],
   ['SUSHI', panel6Data.value],
-  ['XHV', panel8Data.value],
-  ['ARRR', panel9Data.value],
-  ['XMR', panel10Data.value],
-  ['PRCY', panel11Data.value]
+  ['XHV',   panel8Data.value],
+  ['ARRR',  panel9Data.value],
+  ['XMR',   panel10Data.value],
+  ['PRCY',  panel11Data.value],
+  ['BTC',   panel12Data.value],
+  ['LTC',   panel13Data.value],
+  ['DASH',  panel14Data.value],
+  ['BCH',   panel15Data.value]
 ]);
 
   // Optional; add a title and set the width and height of the chart
